@@ -4,19 +4,23 @@ function EducationInfo() {
       <h2>Education Info Section</h2>
       <form action="">
         <div>
-          <label>School Name:</label>
-          <input type="text" />
+          <label>
+            School Name: <input type="text" />
+          </label>
         </div>
         <div>
-          <label>Study Title:</label>
-          <input type="text" />
+          <label>
+            Study Title:
+            <input type="text" />
+          </label>
         </div>
         <div>
-          <label>Study Date:</label>
-          <input type="text" />
+          <label>
+            Study Date:
+            <input type="text" />
+          </label>
         </div>
         <button type="submit">Submit</button>
-        <button type="button">Edit</button>
       </form>
     </>
   );

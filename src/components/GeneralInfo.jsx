@@ -1,26 +1,46 @@
-function GeneralInfo() {
+function GeneralInfo({ generalInfo, onInputChange }) {
+  const { name, email, phoneNumber } = generalInfo;
+
   return (
     <>
       <h2>General Info Section</h2>
       <form action="">
         <div>
-          <label>Name:</label>
-          <input type="text" />
+          <label>
+            Name:
+            <input
+              type="text"
+              value={name}
+              name="name"
+              onChange={(e) => onInputChange(e)}
+            />
+          </label>
         </div>
         <div>
-          <label>Email:</label>
-          <input type="text" />
+          <label>
+            Email:{" "}
+            <input
+              type="text"
+              name="email"
+              value={email}
+              onChange={(e) => onInputChange(e)}
+            />
+          </label>
         </div>
         <div>
-          <label>Phone Number:</label>
-          <input
-            type="text"
-            pattern="[0-9]{3}[0-9]{3}[0-9]{3}"
-            title="Please enter phone number in the correct format ex. 500100500"
-          />
+          <label>
+            Phone Number:{" "}
+            <input
+              type="text"
+              name="phoneNumber"
+              value={phoneNumber}
+              pattern="[0-9]{3}[0-9]{3}[0-9]{3}"
+              title="Please enter phone number in the correct format ex. 500100500"
+              onChange={(e) => onInputChange(e)}
+            />
+          </label>
         </div>
         <button type="submit">Submit</button>
-        <button type="button">Edit</button>
       </form>
     </>
   );
