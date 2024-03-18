@@ -1,5 +1,5 @@
 function GeneralInfo({ generalInfo, onInputChange }) {
-  const { name, email, phoneNumber } = generalInfo;
+  const { fullName, email, phoneNumber } = generalInfo;
 
   return (
     <>
@@ -10,15 +10,15 @@ function GeneralInfo({ generalInfo, onInputChange }) {
             Name:
             <input
               type="text"
-              value={name}
-              name="name"
+              value={fullName}
+              name="fullName"
               onChange={(e) => onInputChange(e)}
             />
           </label>
         </div>
         <div>
           <label>
-            Email:{" "}
+            Email:
             <input
               type="text"
               name="email"
@@ -29,7 +29,7 @@ function GeneralInfo({ generalInfo, onInputChange }) {
         </div>
         <div>
           <label>
-            Phone Number:{" "}
+            Phone Number:
             <input
               type="text"
               name="phoneNumber"

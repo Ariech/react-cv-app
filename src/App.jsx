@@ -5,7 +5,7 @@ import ExperienceInfo from "./components/ExperienceInfo";
 
 function App() {
   const [generalInfo, setGeneralInfo] = useState({
-    name: "",
+    fullName: "",
     email: "",
     phoneNumber: "",
   });
@@ -25,9 +25,6 @@ function App() {
         generalInfo={generalInfo}
         onInputChange={(e) => handleInputChange(e, setGeneralInfo)}
       />
-      {/* <div>
-        <p>{generalInfo.name}</p>
-      </div> */}
       <EducationInfo />
       <ExperienceInfo />
     </>
