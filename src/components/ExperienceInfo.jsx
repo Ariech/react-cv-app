@@ -37,7 +37,6 @@ function ExperienceInfo() {
             <input type="date" />
           </label>
         </div>
-        <button type="submit">Submit</button>
       </form>
     </>
   );

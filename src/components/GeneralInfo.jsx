@@ -34,13 +34,12 @@ function GeneralInfo({ generalInfo, onInputChange }) {
               type="text"
               name="phoneNumber"
               value={phoneNumber}
-              pattern="[0-9]{3}[0-9]{3}[0-9]{3}"
-              title="Please enter phone number in the correct format ex. 500100500"
+              // pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
+              // title="Please enter phone number in the correct format ex. 500 100 500"
               onChange={(e) => onInputChange(e)}
             />
           </label>
         </div>
-        <button type="submit">Submit</button>
       </form>
     </>
   );

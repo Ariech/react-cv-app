@@ -1,29 +1,56 @@
-function EducationInfo() {
+function EducationInfo({ educationInfo, onInputChange }) {
+  const { schoolName, degree, fromDate, toDate } = educationInfo;
+
   return (
     <>
       <h2>Education Info Section</h2>
       <form action="">
         <div>
           <label>
-            School Name: <input type="text" />
+            School Name:
+            <input
+              type="text"
+              value={schoolName}
+              name="schoolName"
+              onChange={(e) => onInputChange(e)}
+            />
           </label>
         </div>
         <div>
           <label>
-            Study Title:
-            <input type="text" />
+            Degree:
+            <input
+              type="text"
+              value={degree}
+              name="degree"
+              onChange={(e) => onInputChange(e)}
+            />
           </label>
         </div>
         <div>
           <label>
-            Study Date:
-            <input type="text" />
+            From Date:
+            <input
+              type="text"
+              value={fromDate}
+              name="fromDate"
+              onChange={(e) => onInputChange(e)}
+            />
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <div>
+          <label>
+            To Date:
+            <input
+              type="text"
+              value={toDate}
+              name="toDate"
+              onChange={(e) => onInputChange(e)}
+            />
+          </label>
+        </div>
       </form>
     </>
   );
 }
-
 export default EducationInfo;
