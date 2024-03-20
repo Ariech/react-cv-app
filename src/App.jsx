@@ -10,20 +10,46 @@ function App() {
     phoneNumber: "504 969 000",
   });
 
-  const [educationInfo, setEducationInfo] = useState({
-    schoolName: "Boston University",
-    degree: "Spatial Management",
-    fromDate: "March 2020",
-    toDate: "June 2023",
-  });
+  const [educationInfo, setEducationInfo] = useState([
+    {
+      id: 1,
+      schoolName: "Boston University",
+      degree: "Spatial Management",
+      fromDate: "March 2020",
+      toDate: "June 2023",
+    },
+  ]);
 
   const handleInputChange = (event, stateUpdater) => {
-    console.log(event);
     const { name, value } = event.target;
     stateUpdater((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleEducationInputChange = (e, id) => {
+    const { name, value } = e.target;
+    setEducationInfo((prevEducationInfo) =>
+      prevEducationInfo.map((education) => {
+        if (education.id === id) {
+          return { ...education, [name]: value };
+        }
+        return education;
+      })
+    );
+  };
+
+  const handleAddEducation = () => {
+    const newEducation = {
+      id: educationInfo.length + 1,
+      schoolName: "",
+      degree: "",
+      fromDate: "",
+      toDate: "",
+    };
+
+    setEducationInfo([...educationInfo, newEducation]);
   };
 
   return (
@@ -35,22 +61,17 @@ function App() {
           onInputChange={(e) => handleInputChange(e, setGeneralInfo)}
         />
 
-        <EducationInfo
-          educationInfo={educationInfo}
-          onInputChange={(e) => handleInputChange(e, setEducationInfo)}
-        />
+        <div>
+          {educationInfo.map((info) => (
+            <EducationInfo
+              key={info.id}
+              educationInfo={info}
+              onInputChange={(e) => handleEducationInputChange(e, info.id)}
+            />
+          ))}
+          <button onClick={handleAddEducation}>Add Education</button>
+        </div>
         <ExperienceInfo />
-      </div>
-      <div>
-        <p>Full name: {generalInfo.fullName}</p>
-        <p>Email: {generalInfo.email}</p>
-        <p>Phone Number: {generalInfo.phoneNumber}</p>
-      </div>
-      <div>
-        <p>School name: {educationInfo.schoolName}</p>
-        <p>Degree: {educationInfo.degree}</p>
-        <p>From Date: {educationInfo.fromDate}</p>
-        <p>To Date: {educationInfo.toDate}</p>
       </div>
     </>
   );
