@@ -31,7 +31,7 @@ function EducationInfo({ educationInfo, onInputChange }) {
           <label>
             From Date:
             <input
-              type="text"
+              type="date"
               value={fromDate}
               name="fromDate"
               onChange={(e) => onInputChange(e)}
@@ -42,7 +42,7 @@ function EducationInfo({ educationInfo, onInputChange }) {
           <label>
             To Date:
             <input
-              type="text"
+              type="date"
               value={toDate}
               name="toDate"
               onChange={(e) => onInputChange(e)}

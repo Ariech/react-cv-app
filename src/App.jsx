@@ -4,6 +4,10 @@ import EducationInfo from "./components/EducationInfo";
 import ExperienceInfo from "./components/ExperienceInfo";
 
 function App() {
+  const generateId = () => {
+    return new Date().getTime().toString();
+  };
+
   const [generalInfo, setGeneralInfo] = useState({
     fullName: "John Smith",
     email: "johns@gmail.com",
@@ -12,11 +16,22 @@ function App() {
 
   const [educationInfo, setEducationInfo] = useState([
     {
-      id: 1,
+      id: generateId(),
       schoolName: "Boston University",
       degree: "Spatial Management",
-      fromDate: "March 2020",
-      toDate: "June 2023",
+      fromDate: "",
+      toDate: "",
+    },
+  ]);
+
+  const [experienceInfo, setExperienceInfo] = useState([
+    {
+      id: generateId(),
+      companyName: "Boston Dynamics",
+      positionTitle: "Programmer",
+      mainResponsibilites: "Programming",
+      fromDate: "",
+      toDate: "",
     },
   ]);
 
@@ -28,21 +43,21 @@ function App() {
     }));
   };
 
-  const handleEducationInputChange = (e, id) => {
+  const handleInfoInputChange = (e, id, setter) => {
     const { name, value } = e.target;
-    setEducationInfo((prevEducationInfo) =>
-      prevEducationInfo.map((education) => {
-        if (education.id === id) {
-          return { ...education, [name]: value };
+    setter((prevInfo) =>
+      prevInfo.map((info) => {
+        if (info.id === id) {
+          return { ...info, [name]: value };
         }
-        return education;
+        return info;
       })
     );
   };
 
   const handleAddEducation = () => {
     const newEducation = {
-      id: educationInfo.length + 1,
+      id: generateId(),
       schoolName: "",
       degree: "",
       fromDate: "",
@@ -50,6 +65,31 @@ function App() {
     };
 
     setEducationInfo([...educationInfo, newEducation]);
+  };
+
+  const handleRemoveEducation = (id) => {
+    setEducationInfo((prevEducationInfo) => {
+      return prevEducationInfo.filter((education) => education.id !== id);
+    });
+  };
+
+  const handleAddExperience = () => {
+    const newExperience = {
+      id: generateId(),
+      companyName: "",
+      positionTitle: "",
+      mainResponsibilites: "",
+      fromDate: "",
+      toDate: "",
+    };
+
+    setExperienceInfo([...experienceInfo, newExperience]);
+  };
+
+  const handleRemoveExperience = (id) => {
+    setExperienceInfo((prevExperienceInfo) => {
+      return prevExperienceInfo.filter((experience) => experience.id !== id);
+    });
   };
 
   return (
@@ -63,15 +103,37 @@ function App() {
 
         <div>
           {educationInfo.map((info) => (
-            <EducationInfo
-              key={info.id}
-              educationInfo={info}
-              onInputChange={(e) => handleEducationInputChange(e, info.id)}
-            />
+            <div key={info.id}>
+              <EducationInfo
+                educationInfo={info}
+                onInputChange={(e) =>
+                  handleInfoInputChange(e, info.id, setEducationInfo)
+                }
+              />
+              <button onClick={() => handleRemoveEducation(info.id)}>
+                Remove
+              </button>
+            </div>
           ))}
           <button onClick={handleAddEducation}>Add Education</button>
         </div>
-        <ExperienceInfo />
+
+        <div>
+          {experienceInfo.map((info) => (
+            <div key={info.id}>
+              <ExperienceInfo
+                experienceInfo={info}
+                onInputChange={(e) =>
+                  handleInfoInputChange(e, info.id, setExperienceInfo)
+                }
+              />
+              <button onClick={() => handleRemoveExperience(info.id)}>
+                Remove
+              </button>
+            </div>
+          ))}
+          <button onClick={handleAddExperience}>Add Experience</button>
+        </div>
       </div>
     </>
   );
